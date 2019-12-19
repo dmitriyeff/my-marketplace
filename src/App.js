@@ -1,11 +1,16 @@
-import React from 'react';
-import Container from 'react-bootstrap/Container';
+import React, { Component, Fragment } from 'react';
 import HeaderContainer from "./components/HeaderContainer";
+import BodyContainer from "./components/BodyContainer";
 
-function App() {
-  return (
-      <HeaderContainer />
-  );
+class App extends Component {
+  render() {
+    return (
+      <Fragment>
+        <HeaderContainer />
+        <BodyContainer />
+      </Fragment>
+    );
+  }
 }
 
 export default App;
