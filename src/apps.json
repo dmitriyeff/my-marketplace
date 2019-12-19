@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Jedi App",
+    "image": "src/assets/appImages/jedi.jpeg",
+    "description": "Jedi were powerful Force-wielders and adjudicators tasked by the Galactic Republic to be the guardians of peace and order in the Star Wars galaxy",
+    "appId": 1
+  },
+  {
+    "name": "Cosmos",
+    "image": "src/assets/appImages/cosmos.jpg",
+    "description": "The interoperable, scalable blockchain application. Built for developers.",
+    "appId": 2
+  },
+  {
+    "name": "Cosmos",
+    "image": "src/assets/appImages/stars.jpg",
+    "description": "STARS is designed to recognize providers achievements in the arenas in which they are strongest, while they continue to improve in other arenas.",
+    "appId": 3
+  }
+]
