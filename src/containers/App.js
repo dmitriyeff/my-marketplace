@@ -10,11 +10,14 @@ class App extends Component {
             <Fragment>
                 <HeaderContainer />
                 {jsonData.map(app => (
-                    <AppContext.Provider key={app.id} value={{
-                        title: app.title,
-                        description: app.description,
-                        image: app.image
-                    }}>
+                    <AppContext.Provider
+                        key={app.id}
+                        value={{
+                            title: app.title,
+                            description: app.description,
+                            image: app.image
+                        }}
+                    >
                         <BodyContainer />
                     </AppContext.Provider>
                 ))}
@@ -24,8 +27,3 @@ class App extends Component {
 }
 
 export default App;
-
-// key: app.id,
-// title: app.title,
-// description: app.description,
-// image: app.image,
