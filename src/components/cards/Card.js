@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import ButtonLink from "../Button/LinkButton";
 import AppContext from "../../context/app-context";
 
 import './styles.scss';
 
 const Cards = () => {
     return (
-        <Card className="card">
+        <Card className="card-st">
             <AppContext.Consumer>
                 {context => (
                     <Fragment>
@@ -18,7 +18,7 @@ const Cards = () => {
                         <Card.Body>
                             <Card.Title>{context.title}</Card.Title>
                             <Card.Text>{context.description}</Card.Text>
-                            <Button variant="primary">Go</Button>
+                            <ButtonLink />
                         </Card.Body>
                     </Fragment>
                 )}

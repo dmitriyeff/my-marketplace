@@ -12,11 +12,12 @@ const CardsContainer = () => {
             <CardDeck>
                 {jsonData.map(app => (
                     <AppContext.Provider
-                        key={app.id}
+                        key={app.title}
                         value={{
                             title: app.title,
                             description: app.description,
-                            image: app.image
+                            image: app.image,
+                            link: app.link,
                         }}
                     >
                         <Cards />

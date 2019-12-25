@@ -3,18 +3,21 @@
     "title": "Jedi App",
     "image": "appsImages/jedi.jpeg",
     "description": "Jedi were powerful Force-wielders and adjudicators tasked by the Galactic Republic.",
-    "id": 1
+    "id": 1,
+    "link": "jedi-app"
   },
   {
     "title": "Cosmos",
     "image": "appsImages/cosmos.jpg",
     "description": "The interoperable, scalable blockchain application. Built for developers. Check it now!",
-    "id": 2
+    "id": 2,
+    "link": "cosmos"
   },
   {
     "title": "Stars",
     "image": "appsImages/stars.jpg",
     "description": "STARS is designed to recognize providers achievements in the arenas in which they are strongest.",
-    "id": 3
+    "id": 3,
+    "link": "stars"
   }
 ]
