@@ -14,14 +14,14 @@ const HeaderContainer = () => {
     return (
         <Navbar expand="lg" variant="dark" bg="dark">
             <Router>
-                <Link to="/apps">
+                <Link to="apps">
                     <Navbar.Brand>
                         <Icon />
                         My Marketplace
                     </Navbar.Brand>
                 </Link>
                 <Route>
-                    <Redirect exact from="/" to="/apps" />
+                    <Redirect exact from="/" to="apps" />
                 </Route>
             </Router>
         </Navbar>

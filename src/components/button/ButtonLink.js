@@ -13,7 +13,7 @@ const ButtonLink = () => {
       <AppContext.Consumer>
           {context => (
               <Router>
-                  <Link to={`/apps/${context.link}`}>
+                  <Link to={`apps/${context.link}`}>
                       <Button variant="primary">Open</Button>
                   </Link>
                   {/*<Switch>*/}
