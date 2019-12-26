@@ -4,13 +4,13 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 import "./styles.scss";
 
-const Icon = () => {
+const Icon = ({ spin }) => {
     return (
         <FontAwesomeIcon
             className="icon"
             icon={faGlobe}
             size="lg"
-            spin
+            pulse={spin}
         />
     );
 };

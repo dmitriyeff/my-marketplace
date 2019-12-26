@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Navbar from 'react-bootstrap/Navbar'
 import Icon from './icon/Icon';
 
@@ -11,12 +11,17 @@ import {
 
 
 const HeaderContainer = () => {
+    const [state, changeState] = useState(false);
+
     return (
         <Navbar expand="lg" variant="dark" bg="dark">
             <Router>
                 <Link to="/apps">
-                    <Navbar.Brand>
-                        <Icon />
+                    <Navbar.Brand
+                        onMouseEnter={event => changeState(true)}
+                        onMouseLeave={event => changeState(false)}
+                    >
+                        <Icon spin={state} />
                         My Marketplace
                     </Navbar.Brand>
                 </Link>
