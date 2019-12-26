@@ -14,7 +14,7 @@ const ButtonLink = () => {
           {context => (
               <Router>
                   <Link to={`/apps/${context.link}`}>
-                      <Button variant="dark">Open</Button>
+                      <Button variant="outline-dark">Open</Button>
                   </Link>
                   {/*<Switch>*/}
                   {/*    <Route path={`/apps/${context.link}`} />*/}
