@@ -4,7 +4,9 @@ import Icon from './icon/Icon';
 
 import {
     BrowserRouter as Router,
-    Link
+    Link,
+    Redirect,
+    Route
 } from "react-router-dom";
 
 
@@ -18,6 +20,9 @@ const HeaderContainer = () => {
                         My Marketplace
                     </Navbar.Brand>
                 </Link>
+                <Route>
+                    <Redirect exact from="/" to="/apps" />
+                </Route>
             </Router>
         </Navbar>
     );
