@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Card from "react-bootstrap/Card";
-import ButtonLink from "../Button/LinkButton";
+import ButtonLink from "../button/ButtonLink";
 import AppContext from "../../context/app-context";
 
 import './styles.scss';
