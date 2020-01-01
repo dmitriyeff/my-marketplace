@@ -6,7 +6,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 
 import AppContext from "../context/app-context";
 
-const CardsContainer = () => {
+const CardsView = () => {
     return (
         <Container>
             <CardDeck>
@@ -28,4 +28,4 @@ const CardsContainer = () => {
     );
 };
 
-export default CardsContainer;
+export default CardsView;

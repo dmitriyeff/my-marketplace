@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import HeaderContainer from "../components/HeaderContainer";
-import CardsContainer from "../components/CardsContainer";
+import HeaderContainer from "../components/Header";
+import CardsContainer from "../components/CardsView";
 
 class App extends Component {
     render() {

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import Navbar from 'react-bootstrap/Navbar'
-import Icon from './icon/Icon';
+import Navbar from "react-bootstrap/Navbar";
+import Icon from "./icon/Icon";
 
 import {
     BrowserRouter as Router,
@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 
-const HeaderContainer = () => {
+const Header = () => {
     const [state, changeState] = useState(false);
 
     return (
@@ -33,4 +33,4 @@ const HeaderContainer = () => {
     );
 };
 
-export default HeaderContainer;
+export default Header;
