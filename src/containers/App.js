@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import HeaderContainer from "../components/Header";
-import CardsContainer from "../components/CardsView";
+import Header from "../components/Header";
+import CardsView from "../components/CardsView";
 
 class App extends Component {
     render() {
         return (
             <Fragment>
-                <HeaderContainer />
-                <CardsContainer />
+                <Header />
+                <CardsView />
             </Fragment>
         );
     }
