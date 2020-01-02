@@ -1,28 +1,23 @@
-import React from "react";
-import Cards from "../components/cards/Card";
-import jsonData from "../assets/apps";
+import React, { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import CardDeck from "react-bootstrap/CardDeck";
-
-import AppContext from "../context/app-context";
+import AppsList from "./apps/AppsList";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
 
 const CardsView = () => {
+
     return (
         <Container>
             <CardDeck>
-                {jsonData.map(app => (
-                    <AppContext.Provider
-                        key={app.title}
-                        value={{
-                            title: app.title,
-                            description: app.description,
-                            image: app.image,
-                            link: app.link,
-                        }}
-                    >
-                        <Cards />
-                    </AppContext.Provider>
-                ))}
+                <Router>
+                    <Switch>
+                        <Route exact path="/apps" component={AppsList} />
+                    </Switch>
+                </Router>
             </CardDeck>
         </Container>
     );
