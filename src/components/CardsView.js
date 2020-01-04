@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import CardDeck from "react-bootstrap/CardDeck";
 import AppsList from "./apps/AppsList";
+import AppDetails from "./apps/AppDetails";
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,13 +13,13 @@ const CardsView = () => {
 
     return (
         <Container>
-            <CardDeck>
-                <Router>
-                    <Switch>
-                        <Route exact path="/apps" component={AppsList} />
-                    </Switch>
-                </Router>
-            </CardDeck>
+            <Router>
+                <Switch>
+                    <Route exact path="/" component={AppsList} />
+                    <Route exact path="/apps" component={AppsList} />
+                    <Route path="/apps/:id" component={AppDetails} />
+                </Switch>
+            </Router>
         </Container>
     );
 };

@@ -11,6 +11,7 @@ const Cards = () => {
     return (
         <Card className="card-st">
             <Card.Img
+                className="card-st--img"
                 variant="top"
                 src={require(`./../../../src/assets/${image}`)}
             />

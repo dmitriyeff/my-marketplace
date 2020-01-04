@@ -1,12 +1,13 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Cards from "../../components/cards/Card";
+import CardDeck from "react-bootstrap/CardDeck";
 import apps from "../../assets/apps";
 
 import AppContext from "../../context/app-context";
 
 const AppsList = () => {
     return (
-        <Fragment>
+        <CardDeck>
             {apps.map((app, key) => (
                 <AppContext.Provider
                     key={key}
@@ -19,7 +20,7 @@ const AppsList = () => {
                     <Cards />
                 </AppContext.Provider>
             ))}
-        </Fragment>
+        </CardDeck>
     );
 };
 

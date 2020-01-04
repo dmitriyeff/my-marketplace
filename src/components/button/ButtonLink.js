@@ -14,9 +14,6 @@ const ButtonLink = () => {
         <Link to={`/apps/${pathname}`}>
             <Button variant="outline-dark">Open</Button>
         </Link>
-        // {/*<Switch>*/}
-        // {/*    <Route path={`/apps/${context.link}`} />*/}
-        // {/*</Switch>*/}
     );
 };
 
