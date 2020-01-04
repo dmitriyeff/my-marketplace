@@ -14,6 +14,7 @@ const Cards = () => {
                 className="card-st--img"
                 variant="top"
                 src={require(`./../../../src/assets/${image}`)}
+                alt={title}
             />
             <Card.Body>
                 <Card.Title>{title}</Card.Title>
