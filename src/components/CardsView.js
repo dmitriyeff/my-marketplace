@@ -7,6 +7,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect
 } from "react-router-dom";
 
 const CardsView = () => {
@@ -15,7 +16,9 @@ const CardsView = () => {
         <Container>
             <Router>
                 <Switch>
-                    <Route exact path="/" component={AppsList} />
+                    <Route exact path="/" component={AppsList}>
+                        <Redirect from="/" to="/apps"/>
+                    </Route>
                     <Route exact path="/apps" component={AppsList} />
                     <Route path="/apps/:id" component={AppDetails} />
                 </Switch>

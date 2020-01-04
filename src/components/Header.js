@@ -7,13 +7,15 @@ const Header = () => {
 
     return (
         <Navbar expand="lg" variant="dark" bg="dark">
-            <Navbar.Brand
-                onMouseEnter={event => changeState(true)}
-                onMouseLeave={event => changeState(false)}
-            >
-                <Icon spin={state} />
-                My Marketplace
-            </Navbar.Brand>
+            <a href="/">
+                <Navbar.Brand
+                    onMouseEnter={event => changeState(true)}
+                    onMouseLeave={event => changeState(false)}
+                >
+                    <Icon spin={state} />
+                    My Marketplace
+                </Navbar.Brand>
+            </a>
         </Navbar>
     );
 };
