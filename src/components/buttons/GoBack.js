@@ -14,7 +14,7 @@ const GoBack = () => {
                 size="md"
                 onClick={handleButton}
         >
-            Back Button
+            Back
         </Button>
     );
 };

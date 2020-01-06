@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import Card from "react-bootstrap/Card";
-import ButtonLink from "../button/ButtonLink";
+import ButtonLink from "../buttons/ButtonLink";
 import AppContext from "../../context/app-context";
 
 import './styles.scss';
