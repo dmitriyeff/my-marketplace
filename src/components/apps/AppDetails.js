@@ -1,17 +1,11 @@
 import React, { Fragment } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import apps from "../../assets/apps";
 import { Row, Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
+import GoBackButton from "../buttons/GoBack";
 
 const AppDetails = () => {
     const { id } = useParams();
-
-    const history = useHistory();
-
-    const handleButton = () => {
-      return history.push("/apps");
-    };
 
     return (
         <Row style={{justifyContent: "center"}}>
@@ -21,22 +15,17 @@ const AppDetails = () => {
                 { apps.map((app, key) => (
                     <Fragment key={key}>
                         { id === app.title.split(' ').join('-').toLowerCase() &&
-                            <div style={{marginTop: "4em"}}>
+                            <div style={{marginTop: "4rem"}}>
                                 <h2>{app.title}</h2>
                                 <img
                                     style={{width: "100%"}}
                                     src={require(`./../../../src/assets/${app.image}`)}
                                     alt={app.title}
                                 />
-                                <p style={{margin: "2rem 0 2rem 0"}}>
+                                <p style={{margin: "1rem 0"}}>
                                     {app.description}
                                 </p>
-                                <Button variant="outline-dark"
-                                        size="lg"
-                                        onClick={handleButton}
-                                >
-                                    Back
-                                </Button>
+                                <GoBackButton />
                             </div>}
                     </Fragment>
                 ))}
