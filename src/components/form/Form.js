@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Col, Row, Button, ButtonToolbar } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
 
 import "./styles.scss";
@@ -29,6 +29,7 @@ const AppForm = () => {
                             placeholder="Describe your application"
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+
                     </Form.Group>
                 </Form.Row>
             </Form>
@@ -39,7 +40,20 @@ const AppForm = () => {
                     margin: "auto",
                     padding: "0"
                 }}>
+                <ButtonToolbar
+                    style={{
+                        width: "25%",
+                        display: "flex",
+                        justifyContent: "space-between"}}
+                >
                     <GoBackButton />
+                    <Button
+                        variant="outline-danger"
+                        type="submit"
+                    >
+                        Submit
+                    </Button>
+                </ButtonToolbar>
             </Row>
         </Fragment>
     );
