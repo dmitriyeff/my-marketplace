@@ -1,64 +1,85 @@
-import React, { Fragment, useState } from "react";
-import { Form, Col, Row, Button, ButtonToolbar, InputGroup } from "react-bootstrap";
-import GoBackButton from "../buttons/GoBack";
+import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 
-import "./styles.scss";
+const initialState = {
+  appName: "",
+  nameOk: "",
+  nameError: "",
+};
 
-const ValidationForm = () => {
-    const [validated, setValidated] = useState(false);
+class ValidationForm extends Component {
+    constructor(props) {
+        super(props);
 
-    const handleSubmit = event => {
-        const form = event.currentTarget;
+        this.state = initialState;
+    }
 
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+    validate = () => {
+        let nameOk = "";
+        let nameError = "";
+
+        if (!this.state.appName) {
+            nameError = "Please fill app name";
+        } else {
+            nameOk = "Looks good!";
         }
 
-        setValidated(true);
+        if (nameOk || nameError) {
+            this.setState({ nameOk, nameError });
+        }
     };
 
-    return (
-        <Fragment>
-            <div>
-                <Form className="form-st"
-                      noValidate
-                      validated={validated}
-                      onSubmit={handleSubmit}
-                >
-                    <Form.Row>
-                        <Form.Group as={Col} md="4" controlId="validationCustom01">
-                            <Form.Label>App name</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                placeholder="Name your app"
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                    </Form.Row>
-                    <Form.Row>
-                        <Form.Group as={Col} md="4" controlId="validationCustom02">
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control
-                                required
-                                type="text"
-                                as="textarea"
-                                placeholder="Add app description"
-                            />
-                            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                        </Form.Group>
-                    </Form.Row>
-                    <Button type="submit"
-                            variant="outline-primary"
-                    >
-                        Submit form
-                    </Button>
-                </Form>
-                <GoBackButton />
-            </div>
-        </Fragment>
-    );
-};
+    handleSubmit = event => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      this.validate();
+    };
+
+    handleInputValue = event => {
+      const updatedAppName = event.target.value;
+
+      this.setState({
+         appName: updatedAppName,
+      });
+    };
+
+    render() {
+        return (
+            <form
+                onSubmit={this.handleSubmit}
+                style={{
+                    display: "table-caption"
+                }}>
+                <label>
+                    App name:
+                    <input
+                        style={{
+                            border: "1px solid #ced4da"
+                        }}
+                           type="text"
+                           value={this.state.appName}
+                           onChange={this.handleInputValue}
+                    />
+                    <p style={{
+                        color: "#dc3545",
+                        fontSize: "12px",
+                        marginBottom: "0"
+                    }}>
+                        {this.state.nameError}
+                    </p>
+                    <p style={{
+                        color: "limegreen",
+                        fontSize: "12px",
+                        marginBottom: "0"
+                    }}>
+                        {this.state.nameOk}
+                    </p>
+                </label>
+                <Button type="submit" variant="outline-primary">Submit form</Button>
+            </form>
+        );
+    }
+}
 
 export default ValidationForm;
