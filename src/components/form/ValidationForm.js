@@ -4,7 +4,7 @@ import GoBackButton from "../buttons/GoBack";
 
 import "./styles.scss";
 
-const AppForm = () => {
+const ValidationForm = () => {
     const [validated, setValidated] = useState(false);
 
     const handleSubmit = event => {
@@ -61,4 +61,4 @@ const AppForm = () => {
     );
 };
 
-export default AppForm;
+export default ValidationForm;
