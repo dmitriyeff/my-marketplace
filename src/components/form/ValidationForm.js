@@ -1,10 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Button } from "react-bootstrap";
+import GoBack from "../buttons/GoBack";
+import "./styles.scss";
 
 const initialState = {
-  appName: "",
-  nameOk: "",
-  nameError: "",
+    appName: "",
+    nameOk: "",
+    nameError: "",
+    description: "",
+    descriptionOk: "",
+    descriptionIsMissing: "",
+    descriptionIsTooShort: "",
 };
 
 class ValidationForm extends Component {
@@ -17,15 +23,32 @@ class ValidationForm extends Component {
     validate = () => {
         let nameOk = "";
         let nameError = "";
+        let descriptionOk = "";
+        let descriptionIsMissing = "";
+        let descriptionIsTooShort = "";
 
-        if (!this.state.appName) {
-            nameError = "Please fill app name";
+        const appDescription = this.state.description;
+
+        !this.state.appName ? nameError = "Please fill app name" : nameOk = "Looks good!";
+
+        if (!appDescription) {
+            descriptionIsMissing = "Description is missing";
+        } else if (appDescription.length < 10) {
+            descriptionIsTooShort = "Description should be at least 10 chars long";
         } else {
-            nameOk = "Looks good!";
+            descriptionOk = "Looks good!";
         }
 
-        if (nameOk || nameError) {
-            this.setState({ nameOk, nameError });
+        if (nameOk || descriptionOk || nameError || descriptionIsMissing || descriptionIsTooShort) {
+            this.setState({
+                nameOk,
+                nameError,
+                descriptionOk,
+                descriptionIsMissing,
+                descriptionIsTooShort
+            });
+
+            return !!(descriptionOk && nameOk);
         }
     };
 
@@ -33,7 +56,11 @@ class ValidationForm extends Component {
       event.preventDefault();
       event.stopPropagation();
 
-      this.validate();
+      const isValid = this.validate();
+
+      if (isValid) {
+          return window.history.back();
+      }
     };
 
     handleInputValue = event => {
@@ -44,40 +71,60 @@ class ValidationForm extends Component {
       });
     };
 
+    handleDescription = event => {
+        const updatedDescription = event.target.value;
+
+        this.setState({
+            description: updatedDescription,
+        });
+    };
+
     render() {
         return (
-            <form
-                onSubmit={this.handleSubmit}
-                style={{
-                    display: "table-caption"
-                }}>
-                <label>
-                    App name:
-                    <input
-                        style={{
-                            border: "1px solid #ced4da"
-                        }}
-                           type="text"
-                           value={this.state.appName}
-                           onChange={this.handleInputValue}
-                    />
-                    <p style={{
-                        color: "#dc3545",
-                        fontSize: "12px",
-                        marginBottom: "0"
-                    }}>
-                        {this.state.nameError}
-                    </p>
-                    <p style={{
-                        color: "limegreen",
-                        fontSize: "12px",
-                        marginBottom: "0"
-                    }}>
-                        {this.state.nameOk}
-                    </p>
-                </label>
-                <Button type="submit" variant="outline-primary">Submit form</Button>
-            </form>
+            <Fragment>
+                <form
+                    className="form"
+                    onSubmit={this.handleSubmit}
+                >
+                    <label className="label">
+                        App name
+                        <input
+                            className="input-form"
+                            type="text"
+                            value={this.state.appName}
+                            onChange={this.handleInputValue}
+                        />
+                        <p className="error">
+                            {this.state.nameError}
+                        </p>
+                        <p className="valid">
+                            {this.state.nameOk}
+                        </p>
+                    </label>
+                    <label className="label">
+                        Your app description
+                        <textarea
+                            value={this.state.description}
+                            onChange={this.handleDescription}
+                            className="input-form"
+                            rows="3"
+                        />
+                        <p className="error">
+                            {this.state.descriptionIsMissing}
+                        </p>
+                        <p className="error">
+                            {this.state.descriptionIsTooShort}
+                        </p>
+                        <p className="valid">
+                            {this.state.descriptionOk}
+                        </p>
+                    </label>
+                    <Button className="button" type="submit" variant="outline-primary">Submit form</Button>
+                    <div className="button">
+                        <GoBack />
+                    </div>
+                </form>
+            </Fragment>
         );
     }
 }

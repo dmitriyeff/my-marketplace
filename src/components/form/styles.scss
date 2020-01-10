@@ -1,6 +1,35 @@
-.form-st {
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
     border: .2rem solid #ececec;
     border-radius: 8px;
     margin: 4rem auto 2rem;
     padding: 2rem;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+    color: #dc3545;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.valid {
+    color: limegreen;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.input-form {
+    border: 1px solid #ced4da;
+}
+
+.button {
+    width: fit-content;
+    margin: .5rem .5rem .5rem 0;
 }
