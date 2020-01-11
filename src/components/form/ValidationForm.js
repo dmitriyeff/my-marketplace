@@ -52,17 +52,6 @@ class ValidationForm extends Component {
         }
     };
 
-    handleSubmit = event => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      const isValid = this.validate();
-
-      if (isValid) {
-          return window.history.back();
-      }
-    };
-
     handleInputValue = event => {
       const updatedAppName = event.target.value;
 
@@ -77,6 +66,17 @@ class ValidationForm extends Component {
         this.setState({
             description: updatedDescription,
         });
+    };
+
+    handleSubmit = event => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const isValid = this.validate();
+
+        if (isValid) {
+            return window.history.back();
+        }
     };
 
     render() {
