@@ -13,6 +13,7 @@ const initialState = {
     descriptionIsTooShort: "",
     submittedAppTitle: [],
     submittedDescription: [],
+    newApp: []
 };
 
 class ValidationForm extends Component {
@@ -84,14 +85,13 @@ class ValidationForm extends Component {
             const appDescription = [...currentDescription];
 
             this.setState({
-                submittedAppDetails: {
+                newApp: {
                     appTitle,
-                    appDescription
+                    appDescription,
                 }
             });
 
-            this.appendValueToStorage('submittedAppTitle', this.state.appTitle);
-            this.appendValueToStorage('submittedDescription', this.state.description);
+            this.appendValueToStorage('newApp', [this.state.appTitle, this.state.description]);
             // return window.history.back();
         }
 
@@ -109,6 +109,9 @@ class ValidationForm extends Component {
     };
 
     render() {
+        console.log(JSON.parse(localStorage.getItem('newApp')));
+        // console.log(JSON.parse(localStorage.getItem('submittedDescription')));
+        // console.log(JSON.parse(localStorage.getItem('submittedAppTitle')));
         return (
             <Fragment>
                 <form
@@ -154,16 +157,10 @@ class ValidationForm extends Component {
                     </div>
                 </form>
                 <div>
-                    {localStorage.getItem('submittedAppTitle') &&
-                        JSON.parse(localStorage.getItem('submittedAppTitle')).map((title, key) => (
+                    {localStorage.getItem('newApp') &&
+                        JSON.parse(localStorage.getItem('newApp')).map((app, key) => (
                             <div key={key}>
-                                <div>{title}</div>
-                            </div>
-                    ))}
-                    {localStorage.getItem('submittedDescription') &&
-                        JSON.parse(localStorage.getItem('submittedDescription')).map((description, key) => (
-                            <div key={key}>
-                                <div>{description}</div>
+                                <div>{app}</div>
                             </div>
                     ))}
                 </div>
