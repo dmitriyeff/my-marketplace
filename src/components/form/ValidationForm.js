@@ -11,6 +11,8 @@ const initialState = {
     descriptionOk: "",
     descriptionIsMissing: "",
     descriptionIsTooShort: "",
+    submittedAppTitle: [],
+    submittedDescription: [],
 };
 
 class ValidationForm extends Component {
@@ -75,8 +77,35 @@ class ValidationForm extends Component {
         const isValid = this.validate();
 
         if (isValid) {
-            return window.history.back();
+
+            const currentTitle = this.state.appTitle;
+            const currentDescription = this.state.description;
+            const appTitle = [...currentTitle];
+            const appDescription = [...currentDescription];
+
+            this.setState({
+                submittedAppDetails: {
+                    appTitle,
+                    appDescription
+                }
+            });
+
+            this.appendValueToStorage('submittedAppTitle', this.state.appTitle);
+            this.appendValueToStorage('submittedDescription', this.state.description);
+            // return window.history.back();
         }
+
+        return false;
+    };
+
+    appendValueToStorage = (key, value) => {
+        let values = JSON.parse(localStorage.getItem(key));
+        if (values === null) {
+            values = [];
+        }
+
+        values.push(value);
+        localStorage.setItem(key, JSON.stringify(values));
     };
 
     render() {
@@ -124,6 +153,20 @@ class ValidationForm extends Component {
                         <GoBack />
                     </div>
                 </form>
+                <div>
+                    {localStorage.getItem('submittedAppTitle') &&
+                        JSON.parse(localStorage.getItem('submittedAppTitle')).map((title, key) => (
+                            <div key={key}>
+                                <div>{title}</div>
+                            </div>
+                    ))}
+                    {localStorage.getItem('submittedDescription') &&
+                        JSON.parse(localStorage.getItem('submittedDescription')).map((description, key) => (
+                            <div key={key}>
+                                <div>{description}</div>
+                            </div>
+                    ))}
+                </div>
             </Fragment>
         );
     }
