@@ -4,7 +4,7 @@ import GoBack from "../buttons/GoBack";
 import "./styles.scss";
 
 const initialState = {
-    appName: "",
+    appTitle: "",
     nameOk: "",
     nameError: "",
     description: "",
@@ -29,7 +29,7 @@ class ValidationForm extends Component {
 
         const appDescription = this.state.description;
 
-        !this.state.appName ? nameError = "Please fill app name" : nameOk = "Looks good!";
+        !this.state.appTitle ? nameError = "Please fill app name" : nameOk = "Looks good!";
 
         if (!appDescription) {
             descriptionIsMissing = "Description is missing";
@@ -56,7 +56,7 @@ class ValidationForm extends Component {
       const updatedAppName = event.target.value;
 
       this.setState({
-         appName: updatedAppName,
+         appTitle: updatedAppName,
       });
     };
 
@@ -91,7 +91,7 @@ class ValidationForm extends Component {
                         <input
                             className="input-form"
                             type="text"
-                            value={this.state.appName}
+                            value={this.state.appTitle}
                             onChange={this.handleInputValue}
                         />
                         <p className="error">
