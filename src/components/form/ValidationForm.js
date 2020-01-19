@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import GoBack from "../buttons/GoBack";
 import "./styles.scss";
 
-const storage = JSON.parse(localStorage.getItem('newApp'));
+const initialStorage = JSON.parse(localStorage.getItem('newApp'));
 
 const initialState = {
     appTitle: "",
@@ -13,7 +13,7 @@ const initialState = {
     descriptionOk: "",
     descriptionIsMissing: "",
     descriptionIsTooShort: "",
-    newApp: storage,
+    newApp: initialStorage,
 };
 
 class ValidationForm extends Component {
@@ -104,7 +104,6 @@ class ValidationForm extends Component {
     };
 
     render() {
-        console.log(this.state.newApp);
         return (
             <Fragment>
                 <form
@@ -155,17 +154,16 @@ class ValidationForm extends Component {
                         <GoBack />
                     </div>
                 </form>
-                <div>
-                    {localStorage.getItem('newApp') &&
-                        JSON.parse(localStorage.getItem('newApp')).map((app, key) => (
-                        <div key={key}>
-                            <div>{app[0]}</div>
-                            <div>{app[1]}</div>
-                        </div>))}
-                </div>
             </Fragment>
         );
     }
+}
+
+export function getAppInfoFromStorage() {
+    if (initialState.newApp) {
+        return initialState.newApp
+    }
+    return [];
 }
 
 export default ValidationForm;

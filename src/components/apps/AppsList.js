@@ -5,12 +5,31 @@ import apps from "../../assets/apps";
 import CreateAppButton from "../buttons/CreateAppButton";
 
 import AppContext from "../../context/app-context";
+import { getAppInfoFromStorage } from "../form/ValidationForm";
 
 const AppsList = () => {
+
+    const initialApps = apps.map(app => {
+       return {
+           title: app.title,
+           description: app.description,
+           image: app.image,
+       }
+    });
+
+    const addedApps = getAppInfoFromStorage().map(app => {
+        return {
+            title: app[0],
+            description: app[1],
+        };
+    });
+
+    const allApps = [...addedApps, ...initialApps];
+
     return (
         <Fragment>
             <CardDeck style={{marginBottom: "2rem"}}>
-                {apps.map((app, key) => (
+                {allApps.map((app, key) => (
                     <AppContext.Provider
                         key={key}
                         value={{
@@ -19,7 +38,7 @@ const AppsList = () => {
                             image: app.image,
                         }}
                     >
-                        <Cards />
+                        <Cards/>
                     </AppContext.Provider>
                 ))}
             </CardDeck>
