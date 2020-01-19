@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import GoBack from "../buttons/GoBack";
 import "./styles.scss";
 
+const storage = JSON.parse(localStorage.getItem('newApp'));
+
 const initialState = {
     appTitle: "",
     nameOk: "",
@@ -11,9 +13,7 @@ const initialState = {
     descriptionOk: "",
     descriptionIsMissing: "",
     descriptionIsTooShort: "",
-    submittedAppTitle: [],
-    submittedDescription: [],
-    newApp: []
+    newApp: storage,
 };
 
 class ValidationForm extends Component {
@@ -79,19 +79,10 @@ class ValidationForm extends Component {
 
         if (isValid) {
 
-            const currentTitle = this.state.appTitle;
-            const currentDescription = this.state.description;
-            const appTitle = [...currentTitle];
-            const appDescription = [...currentDescription];
+            const title = this.state.appTitle;
+            const description = this.state.description;
 
-            this.setState({
-                newApp: {
-                    appTitle,
-                    appDescription,
-                }
-            });
-
-            this.appendValueToStorage('newApp', [this.state.appTitle, this.state.description]);
+            this.appendValueToStorage('newApp', [title, description]);
             // return window.history.back();
         }
 
@@ -106,12 +97,14 @@ class ValidationForm extends Component {
 
         values.push(value);
         localStorage.setItem(key, JSON.stringify(values));
+
+        this.setState({
+            newApp: JSON.parse(localStorage.getItem('newApp'))
+        })
     };
 
     render() {
-        console.log(JSON.parse(localStorage.getItem('newApp')));
-        // console.log(JSON.parse(localStorage.getItem('submittedDescription')));
-        // console.log(JSON.parse(localStorage.getItem('submittedAppTitle')));
+        console.log(this.state.newApp);
         return (
             <Fragment>
                 <form
@@ -151,7 +144,13 @@ class ValidationForm extends Component {
                             {this.state.descriptionOk}
                         </p>
                     </label>
-                    <Button className="button" type="submit" variant="outline-primary">Submit form</Button>
+                    <Button
+                        className="button"
+                        type="submit"
+                        variant="outline-primary"
+                    >
+                        Submit form
+                    </Button>
                     <div className="button">
                         <GoBack />
                     </div>
@@ -159,10 +158,10 @@ class ValidationForm extends Component {
                 <div>
                     {localStorage.getItem('newApp') &&
                         JSON.parse(localStorage.getItem('newApp')).map((app, key) => (
-                            <div key={key}>
-                                <div>{app}</div>
-                            </div>
-                    ))}
+                        <div key={key}>
+                            <div>{app[0]}</div>
+                            <div>{app[1]}</div>
+                        </div>))}
                 </div>
             </Fragment>
         );
