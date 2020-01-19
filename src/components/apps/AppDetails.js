@@ -1,32 +1,52 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import apps from "../../assets/apps";
 import { Row, Col } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
+import {getAppInfoFromStorage} from "../form/ValidationForm";
 
 const AppDetails = () => {
     const { id } = useParams();
+
+    const initialApps = apps.map(app => {
+        return {
+            title: app.title,
+            description: app.description,
+            image: app.image,
+        }
+    });
+
+    const addedApps = getAppInfoFromStorage().map(app => {
+        return {
+            title: app[0],
+            description: app[1],
+        };
+    });
+
+    const allApps = [...addedApps, ...initialApps];
 
     return (
         <Row style={{justifyContent: "center"}}>
             <Col xs={12}
                  md={8}
             >
-                { apps.map((app, key) => (
+                { allApps.map((app, key) => (
                     <Fragment key={key}>
                         { id === app.title.split(' ').join('-').toLowerCase() &&
                             <div style={{marginTop: "4rem"}}>
                                 <h2>{app.title}</h2>
-                                <img
-                                    style={{width: "100%"}}
-                                    src={require(`./../../../src/assets/${app.image}`)}
-                                    alt={app.title}
-                                />
+                                {app.image &&
+                                    <img
+                                        style={{width: "100%"}}
+                                        src={require(`./../../../src/assets/${app.image}`)}
+                                        alt={app.title}
+                                    />}
                                 <p style={{margin: "1rem 0"}}>
                                     {app.description}
                                 </p>
                                 <GoBackButton />
-                            </div>}
+                            </div>
+                        }
                     </Fragment>
                 ))}
             </Col>
