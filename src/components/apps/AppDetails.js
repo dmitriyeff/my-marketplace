@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import apps from "../../assets/apps";
 import { Row, Col } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
-import {getAppInfoFromStorage} from "../form/ValidationForm";
+// import {getAppInfoFromStorage} from "../form/ValidationForm";
 
 const AppDetails = () => {
     const { id } = useParams();
@@ -16,14 +16,14 @@ const AppDetails = () => {
         }
     });
 
-    const addedApps = getAppInfoFromStorage().map(app => {
-        return {
-            title: app[0],
-            description: app[1],
-        };
-    });
+    // const addedApps = getAppInfoFromStorage().map(app => {
+    //     return {
+    //         title: app[0],
+    //         description: app[1],
+    //     };
+    // });
 
-    const allApps = [...addedApps, ...initialApps];
+    const allApps = [...initialApps];
 
     return (
         <Row style={{justifyContent: "center"}}>

@@ -3,24 +3,20 @@ import { Button } from "react-bootstrap";
 import GoBack from "../buttons/GoBack";
 import "./styles.scss";
 
-const initialStorage = JSON.parse(localStorage.getItem('newApp'));
-
-const initialState = {
-    appTitle: "",
-    nameOk: "",
-    nameError: "",
-    description: "",
-    descriptionOk: "",
-    descriptionIsMissing: "",
-    descriptionIsTooShort: "",
-    newApp: initialStorage,
-};
-
 class ValidationForm extends Component {
     constructor(props) {
         super(props);
 
-        this.state = initialState;
+        this.state = {
+            appTitle: "",
+            nameOk: "",
+            nameError: "",
+            description: "",
+            descriptionOk: "",
+            descriptionIsMissing: "",
+            descriptionIsTooShort: "",
+            newApp: [],
+        };
     }
 
     validate = () => {
@@ -82,33 +78,35 @@ class ValidationForm extends Component {
             const title = this.state.appTitle;
             const description = this.state.description;
 
-            this.appendValueToStorage('newApp', [title, description]);
+            // this.appendValueToStorage('newApp', [title, description]);
+
+            this.props.functionCallFromParent([title, description]);
             // return window.history.back();
         }
 
         return false;
     };
 
-    appendValueToStorage = (key, value) => {
-        let values = JSON.parse(localStorage.getItem(key));
-        if (values === null) {
-            values = [];
-        }
-
-        values.push(value);
-        localStorage.setItem(key, JSON.stringify(values));
-
-        this.setState({
-            newApp: JSON.parse(localStorage.getItem('newApp'))
-        })
-    };
+    // appendValueToStorage = (key, value) => {
+    //     let values = JSON.parse(localStorage.getItem(key));
+    //     if (values === null) {
+    //         values = [];
+    //     }
+    //
+    //     values.push(value);
+    //     localStorage.setItem(key, JSON.stringify(values));
+    //
+    //     this.setState({
+    //         newApp: JSON.parse(localStorage.getItem('newApp'))
+    //     });
+    // };
 
     render() {
         return (
             <Fragment>
                 <form
                     className="form"
-                    onSubmit={this.handleSubmit}
+                    onSubmit={this.handleSubmit.bind(this)}
                 >
                     <label className="label">
                         App name
@@ -159,11 +157,11 @@ class ValidationForm extends Component {
     }
 }
 
-export function getAppInfoFromStorage() {
-    if (initialState.newApp) {
-        return initialState.newApp
-    }
-    return [];
-}
+// export function getAppInfoFromStorage() {
+//     if (initialState.newApp) {
+//         return initialState.newApp
+//     }
+//     return [];
+// }
 
 export default ValidationForm;

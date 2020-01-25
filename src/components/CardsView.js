@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Container from "react-bootstrap/Container";
 import AppsList from "./apps/AppsList";
 import AppDetails from "./apps/AppDetails";
@@ -11,6 +11,16 @@ import {
 
 const CardsView = () => {
 
+    const parentFunction = (data_from_child) => {
+        updatedState(data_from_child);
+    };
+
+    let [state, updatedState] = useState();
+
+    useEffect(() => {
+        console.log(state);
+    });
+
     return (
         <Container>
             <Router>
@@ -18,7 +28,9 @@ const CardsView = () => {
                     <Redirect from="/" to="/apps"/>
                 </Route>
                 <Route exact path="/apps" component={AppsList} />
-                <Route path="/apps/create" component={ValidationForm} />
+                <Route path="/apps/create">
+                    <ValidationForm functionCallFromParent={parentFunction} />
+                </Route>
                 <Route path="/apps/:id" component={AppDetails} />
             </Router>
         </Container>
