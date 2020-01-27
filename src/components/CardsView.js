@@ -11,15 +11,11 @@ import {
 
 const CardsView = () => {
 
-    const parentFunction = (data_from_child) => {
-        updatedState(data_from_child);
+    let [data, updatedData] = useState(0);
+
+    const parentFunction = (dataFromChild) => {
+        updatedData(dataFromChild);
     };
-
-    let [state, updatedState] = useState();
-
-    useEffect(() => {
-        console.log(state);
-    });
 
     return (
         <Container>
@@ -27,7 +23,9 @@ const CardsView = () => {
                 <Route exact path="/" component={AppsList}>
                     <Redirect from="/" to="/apps"/>
                 </Route>
-                <Route exact path="/apps" component={AppsList} />
+                <Route exact path="/apps">
+                    <AppsList newApp={data} />
+                </Route>
                 <Route path="/apps/create">
                     <ValidationForm functionCallFromParent={parentFunction} />
                 </Route>

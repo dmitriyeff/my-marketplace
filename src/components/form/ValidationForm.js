@@ -15,7 +15,6 @@ class ValidationForm extends Component {
             descriptionOk: "",
             descriptionIsMissing: "",
             descriptionIsTooShort: "",
-            newApp: [],
         };
     }
 
@@ -81,7 +80,7 @@ class ValidationForm extends Component {
             // this.appendValueToStorage('newApp', [title, description]);
 
             this.props.functionCallFromParent([title, description]);
-            // return window.history.back();
+            return window.history.back();
         }
 
         return false;
@@ -156,12 +155,5 @@ class ValidationForm extends Component {
         );
     }
 }
-
-// export function getAppInfoFromStorage() {
-//     if (initialState.newApp) {
-//         return initialState.newApp
-//     }
-//     return [];
-// }
 
 export default ValidationForm;
