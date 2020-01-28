@@ -3,9 +3,8 @@ import { useParams } from "react-router-dom";
 import apps from "../../assets/apps";
 import { Row, Col } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
-// import {getAppInfoFromStorage} from "../form/ValidationForm";
 
-const AppDetails = () => {
+const AppDetails = ({ newApps }) => {
     const { id } = useParams();
 
     const initialApps = apps.map(app => {
@@ -16,14 +15,7 @@ const AppDetails = () => {
         }
     });
 
-    // const addedApps = getAppInfoFromStorage().map(app => {
-    //     return {
-    //         title: app[0],
-    //         description: app[1],
-    //     };
-    // });
-
-    const allApps = [...initialApps];
+    const allApps = [...initialApps, ...newApps];
 
     return (
         <Row style={{justifyContent: "center"}}>

@@ -17,6 +17,27 @@ const CardsView = () => {
         updatedData(dataFromChild);
     };
 
+    const appendDataToStorage = (key, value) => {
+        let values = JSON.parse(localStorage.getItem(key));
+
+        if (values === null) {
+            values = [];
+        }
+
+        if (data) {
+            values.push(value);
+        }
+
+        localStorage.setItem(key, JSON.stringify(values));
+
+        return JSON.parse(localStorage.getItem('appData'));
+    };
+
+    const getNewAppsFromStorage = appendDataToStorage('appData', data).map(app => ({
+        title: app[0],
+        description: app[1],
+    }));
+
     return (
         <Container>
             <Router>
@@ -24,12 +45,14 @@ const CardsView = () => {
                     <Redirect from="/" to="/apps"/>
                 </Route>
                 <Route exact path="/apps">
-                    <AppsList newApp={data} />
+                    <AppsList newApps={getNewAppsFromStorage} />
                 </Route>
                 <Route path="/apps/create">
                     <ValidationForm functionCallFromParent={parentFunction} />
                 </Route>
-                <Route path="/apps/:id" component={AppDetails} />
+                <Route path="/apps/:id">
+                    <AppDetails newApps={getNewAppsFromStorage} />
+                </Route>
             </Router>
         </Container>
     );

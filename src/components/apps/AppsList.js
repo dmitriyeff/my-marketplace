@@ -6,23 +6,7 @@ import CreateAppButton from "../buttons/CreateAppButton";
 
 import AppContext from "../../context/app-context";
 
-const AppsList = ({ newApp }) => {
-
-    const appendDataToStorage = (key, value) => {
-        let values = JSON.parse(localStorage.getItem(key));
-
-        if (values === null) {
-            values = [];
-        }
-
-        if (newApp) {
-            values.push(value);
-        }
-
-        localStorage.setItem(key, JSON.stringify(values));
-
-        return JSON.parse(localStorage.getItem('appData'));
-    };
+const AppsList = ({ newApps }) => {
 
     const initialApps = apps.map(app => {
        return {
@@ -31,11 +15,6 @@ const AppsList = ({ newApp }) => {
            image: app.image,
        }
     });
-
-    const newApps = appendDataToStorage('appData', newApp).map(app => ({
-        title: app[0],
-        description: app[1],
-    }));
 
     const allApps = [...initialApps, ...newApps];
 
