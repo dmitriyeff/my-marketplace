@@ -1,19 +1,10 @@
 import React, { Fragment } from "react";
 import { useParams } from "react-router-dom";
-import apps from "../../assets/apps";
 import { Row, Col } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
 
-const AppDetails = ({ newApps }) => {
+const AppDetails = ({ newApps, initialApps }) => {
     const { id } = useParams();
-
-    const initialApps = apps.map(app => {
-        return {
-            title: app.title,
-            description: app.description,
-            image: app.image,
-        }
-    });
 
     const allApps = [...initialApps, ...newApps];
 

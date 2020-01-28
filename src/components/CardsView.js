@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import AppsList from "./apps/AppsList";
 import AppDetails from "./apps/AppDetails";
 import ValidationForm from "./form/ValidationForm";
+import apps from "../assets/apps";
 import {
     BrowserRouter as Router,
     Route,
@@ -38,6 +39,14 @@ const CardsView = () => {
         description: app[1],
     }));
 
+    const initialApps = apps.map(app => {
+        return {
+            title: app.title,
+            description: app.description,
+            image: app.image,
+        }
+    });
+
     return (
         <Container>
             <Router>
@@ -45,13 +54,19 @@ const CardsView = () => {
                     <Redirect from="/" to="/apps"/>
                 </Route>
                 <Route exact path="/apps">
-                    <AppsList newApps={getNewAppsFromStorage} />
+                    <AppsList
+                        newApps={getNewAppsFromStorage}
+                        initialApps={initialApps}
+                    />
                 </Route>
                 <Route path="/apps/create">
                     <ValidationForm functionCallFromParent={parentFunction} />
                 </Route>
                 <Route path="/apps/:id">
-                    <AppDetails newApps={getNewAppsFromStorage} />
+                    <AppDetails
+                        newApps={getNewAppsFromStorage}
+                        initialApps={initialApps}
+                    />
                 </Route>
             </Router>
         </Container>
