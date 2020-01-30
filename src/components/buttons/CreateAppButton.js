@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const CreateAppButton = () => {
     return (
         <Fragment>
-            <Link to="/apps/create">
+            <Link to="/create">
                 <Button variant="outline-danger">
                     Create an app
                 </Button>

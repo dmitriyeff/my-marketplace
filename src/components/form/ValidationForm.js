@@ -77,28 +77,12 @@ class ValidationForm extends Component {
             const title = this.state.appTitle;
             const description = this.state.description;
 
-            // this.appendValueToStorage('newApp', [title, description]);
-
             this.props.functionCallFromParent([title, description]);
             return window.history.back();
         }
 
         return false;
     };
-
-    // appendValueToStorage = (key, value) => {
-    //     let values = JSON.parse(localStorage.getItem(key));
-    //     if (values === null) {
-    //         values = [];
-    //     }
-    //
-    //     values.push(value);
-    //     localStorage.setItem(key, JSON.stringify(values));
-    //
-    //     this.setState({
-    //         newApp: JSON.parse(localStorage.getItem('newApp'))
-    //     });
-    // };
 
     render() {
         return (

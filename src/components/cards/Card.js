@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
-import ButtonLink from "../buttons/ButtonLink";
-import AppContext from "../../context/app-context";
+import Button from "react-bootstrap/Button";
+import {
+    Link,
+} from "react-router-dom";
 
 import './styles.scss';
 
-const Cards = () => {
-    const { image, title, description } = useContext(AppContext);
+const Cards = ({ value }) => {
+    const { title, description, image, appId } = value;
 
     return (
         <Card className="card-st"
@@ -22,10 +24,12 @@ const Cards = () => {
                     src={require(`./../../../src/assets/${image}`)}
                     alt={title}
                 />}
-            <Card.Body>
+            <Card.Body style={{minWidth: "20rem"}}>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                <ButtonLink />
+                <Link to={`/apps/details/${appId}`}>
+                    <Button variant="outline-dark">Open</Button>
+                </Link>
             </Card.Body>
         </Card>
     );

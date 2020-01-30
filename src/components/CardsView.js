@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import Container from "react-bootstrap/Container";
 import AppsList from "./apps/AppsList";
 import AppDetails from "./apps/AppDetails";
 import ValidationForm from "./form/ValidationForm";
 import apps from "../assets/apps";
+import CardDeck from "react-bootstrap/CardDeck";
+
 import {
     BrowserRouter as Router,
     Route,
-    Redirect
+    Redirect,
+    Switch,
 } from "react-router-dom";
+import CreateAppButton from "./buttons/CreateAppButton";
 
 const CardsView = () => {
 
@@ -49,20 +53,46 @@ const CardsView = () => {
 
     const mergedApps = [...initialApps, ...getNewAppsFromStorage];
 
+    const appDetails = mergedApps.map((app, key) => {
+        return {
+            title: app.title,
+            description: app.description,
+            image: app.image,
+            appId: key,
+        }
+    });
+
+    const appList = mergedApps.map((app, key) => {
+        return (
+            <AppsList
+                key={key}
+                value={{
+                    title: app.title,
+                    description: app.description,
+                    image: app.image,
+                    appId: key,
+                }}
+            />
+        )
+    });
+
     return (
         <Container>
             <Router>
                 <Route exact path="/" component={AppsList}>
                     <Redirect from="/" to="/apps"/>
                 </Route>
-                <Route exact path="/apps">
-                    <AppsList apps={mergedApps}/>
-                </Route>
-                <Route path="/apps/create">
+                    <Route exact path="/apps">
+                        <CardDeck style={{marginBottom: "2rem"}}>
+                            {appList}
+                        </CardDeck>
+                        <CreateAppButton />
+                    </Route>
+                    <Route path="/apps/details/:id">
+                        <AppDetails apps={appDetails} />
+                    </Route>
+                <Route path="/create">
                     <ValidationForm functionCallFromParent={parentFunction} />
-                </Route>
-                <Route path="/apps/:id">
-                    <AppDetails apps={mergedApps}/>
                 </Route>
             </Router>
         </Container>

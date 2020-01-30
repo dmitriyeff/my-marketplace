@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
 
 const AppDetails = ({ apps }) => {
-    const { id } = useParams();
+    let { id } = useParams();
 
     return (
         <Row style={{justifyContent: "center"}}>
@@ -13,7 +13,7 @@ const AppDetails = ({ apps }) => {
             >
                 { apps.map((app, key) => (
                     <Fragment key={key}>
-                        { id === app.title.split(' ').join('-').toLowerCase() &&
+                        { id == app.appId &&
                             <div style={{marginTop: "4rem"}}>
                                 <h2>{app.title}</h2>
                                 {app.image &&
