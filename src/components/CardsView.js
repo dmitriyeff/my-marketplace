@@ -47,6 +47,8 @@ const CardsView = () => {
         }
     });
 
+    const mergedApps = [...initialApps, ...getNewAppsFromStorage];
+
     return (
         <Container>
             <Router>
@@ -54,19 +56,13 @@ const CardsView = () => {
                     <Redirect from="/" to="/apps"/>
                 </Route>
                 <Route exact path="/apps">
-                    <AppsList
-                        newApps={getNewAppsFromStorage}
-                        initialApps={initialApps}
-                    />
+                    <AppsList apps={mergedApps}/>
                 </Route>
                 <Route path="/apps/create">
                     <ValidationForm functionCallFromParent={parentFunction} />
                 </Route>
                 <Route path="/apps/:id">
-                    <AppDetails
-                        newApps={getNewAppsFromStorage}
-                        initialApps={initialApps}
-                    />
+                    <AppDetails apps={mergedApps}/>
                 </Route>
             </Router>
         </Container>

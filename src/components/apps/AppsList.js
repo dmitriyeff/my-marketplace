@@ -5,9 +5,7 @@ import CreateAppButton from "../buttons/CreateAppButton";
 
 import AppContext from "../../context/app-context";
 
-const AppsList = ({ newApps, initialApps }) => {
-
-    const allApps = [...initialApps, ...newApps];
+const AppsList = ({ apps }) => {
 
     return (
         <Fragment>
@@ -18,7 +16,7 @@ const AppsList = ({ newApps, initialApps }) => {
                 <CardDeck style={{
                     marginBottom: "2rem"
                 }}>
-                    {allApps.map((app, key) => (
+                    {apps.map((app, key) => (
                         <AppContext.Provider
                             key={key}
                             value={{

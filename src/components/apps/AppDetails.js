@@ -3,17 +3,15 @@ import { useParams } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import GoBackButton from "../buttons/GoBack";
 
-const AppDetails = ({ newApps, initialApps }) => {
+const AppDetails = ({ apps }) => {
     const { id } = useParams();
-
-    const allApps = [...initialApps, ...newApps];
 
     return (
         <Row style={{justifyContent: "center"}}>
             <Col xs={12}
                  md={8}
             >
-                { allApps.map((app, key) => (
+                { apps.map((app, key) => (
                     <Fragment key={key}>
                         { id === app.title.split(' ').join('-').toLowerCase() &&
                             <div style={{marginTop: "4rem"}}>
