@@ -27,7 +27,7 @@ const Cards = ({ value }) => {
             <Card.Body style={{minWidth: "20rem"}}>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{description}</Card.Text>
-                <Link to={`/apps/details/${appId}`}>
+                <Link to={`/apps/${appId}`}>
                     <Button variant="outline-dark">Open</Button>
                 </Link>
             </Card.Body>

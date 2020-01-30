@@ -58,7 +58,7 @@ const CardsView = () => {
             title: app.title,
             description: app.description,
             image: app.image,
-            appId: key,
+            appId: key + 1,
         }
     });
 
@@ -70,7 +70,7 @@ const CardsView = () => {
                     title: app.title,
                     description: app.description,
                     image: app.image,
-                    appId: key,
+                    appId: key + 1,
                 }}
             />
         )
@@ -88,7 +88,7 @@ const CardsView = () => {
                         </CardDeck>
                         <CreateAppButton />
                     </Route>
-                    <Route path="/apps/details/:id">
+                    <Route path="/apps/:id">
                         <AppDetails apps={appDetails} />
                     </Route>
                 <Route path="/create">
