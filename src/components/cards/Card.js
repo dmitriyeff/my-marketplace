@@ -24,7 +24,7 @@ const Cards = ({ value }) => {
                     src={require(`./../../../src/assets/${image}`)}
                     alt={title}
                 />}
-            <Card.Body style={{minWidth: "20rem"}}>
+            <Card.Body>
                 <Card.Title>{title}</Card.Title>
                 <Card.Text>{description}</Card.Text>
                 <Link to={`/apps/${appId}`}>

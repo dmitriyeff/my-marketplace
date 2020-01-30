@@ -4,15 +4,12 @@ import AppsList from "./apps/AppsList";
 import AppDetails from "./apps/AppDetails";
 import ValidationForm from "./form/ValidationForm";
 import apps from "../assets/apps";
-import CardDeck from "react-bootstrap/CardDeck";
 
 import {
     BrowserRouter as Router,
     Route,
     Redirect,
-    Switch,
 } from "react-router-dom";
-import CreateAppButton from "./buttons/CreateAppButton";
 
 const CardsView = () => {
 
@@ -62,20 +59,6 @@ const CardsView = () => {
         }
     });
 
-    const appList = mergedApps.map((app, key) => {
-        return (
-            <AppsList
-                key={key}
-                value={{
-                    title: app.title,
-                    description: app.description,
-                    image: app.image,
-                    appId: key + 1,
-                }}
-            />
-        )
-    });
-
     return (
         <Container>
             <Router>
@@ -83,10 +66,7 @@ const CardsView = () => {
                     <Redirect from="/" to="/apps"/>
                 </Route>
                     <Route exact path="/apps">
-                        <CardDeck style={{marginBottom: "2rem"}}>
-                            {appList}
-                        </CardDeck>
-                        <CreateAppButton />
+                        <AppsList apps={appDetails} />
                     </Route>
                     <Route path="/apps/:id">
                         <AppDetails apps={appDetails} />
