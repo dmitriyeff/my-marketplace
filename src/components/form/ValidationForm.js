@@ -37,17 +37,15 @@ class ValidationForm extends Component {
             descriptionOk = "Looks good!";
         }
 
-        if (nameOk || descriptionOk || nameError || descriptionIsMissing || descriptionIsTooShort) {
-            this.setState({
-                nameOk,
-                nameError,
-                descriptionOk,
-                descriptionIsMissing,
-                descriptionIsTooShort
-            });
+        this.setState({
+            nameOk,
+            nameError,
+            descriptionOk,
+            descriptionIsMissing,
+            descriptionIsTooShort
+        });
 
-            return !!(descriptionOk && nameOk);
-        }
+        return !!(descriptionOk && nameOk);
     };
 
     handleInputValue = event => {
