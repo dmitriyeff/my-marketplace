@@ -13,7 +13,7 @@ const AppDetails = ({ apps }) => {
             >
                 { apps.map((app, key) => (
                     <Fragment key={key}>
-                        { id == app.appId &&
+                        { parseInt(id, 10) === app.appId &&
                             <div style={{marginTop: "4rem"}}>
                                 <h2>{app.title}</h2>
                                 {app.image &&
