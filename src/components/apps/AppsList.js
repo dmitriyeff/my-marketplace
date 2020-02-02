@@ -4,7 +4,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 import CreateAppButton from "../buttons/CreateAppButton";
 
 const AppsList = ({ apps }) => {
-
+    //apps
     return (
         <Fragment>
             <div style={{display: "flex", justifyContent: "space-around"}}>

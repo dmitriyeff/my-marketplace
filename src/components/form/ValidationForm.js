@@ -75,6 +75,7 @@ class ValidationForm extends Component {
             const title = this.state.appTitle;
             const description = this.state.description;
 
+            // functionCallFromParent
             this.props.functionCallFromParent([title, description]);
             return window.history.back();
         }

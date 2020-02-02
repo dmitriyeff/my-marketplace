@@ -66,7 +66,9 @@ const CardsView = () => {
                     <Redirect from="/" to="/apps"/>
                 </Route>
                     <Route exact path="/apps">
-                        <AppsList apps={appDetails} />
+                        <AppsList apps={appDetails}>
+
+                        </AppsList>
                     </Route>
                     <Route path="/apps/:id">
                         <AppDetails apps={appDetails} />
@@ -74,6 +76,10 @@ const CardsView = () => {
                 <Route path="/create">
                     <ValidationForm functionCallFromParent={parentFunction} />
                 </Route>
+                {/*<Route exact path="/" component={AppsList} />*/}
+                {/*<Route exact path="/apps" component={AppsList} />*/}
+                {/*<Route path="/apps/:id" component={AppDetails} />*/}
+                {/*<Route path="/create" component={ValidationForm} />*/}
             </Router>
         </Container>
     );
