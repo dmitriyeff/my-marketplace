@@ -4,6 +4,7 @@ import CardDeck from "react-bootstrap/CardDeck";
 import CreateAppButton from "../buttons/CreateAppButton";
 
 const AppsList = ({ apps }) => {
+    console.log(apps);
     //apps
     return (
         <Fragment>
