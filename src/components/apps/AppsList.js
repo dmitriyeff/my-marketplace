@@ -2,28 +2,28 @@ import React, { Fragment } from "react";
 import Cards from "../../components/cards/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import CreateAppButton from "../buttons/CreateAppButton";
+import Container from "react-bootstrap/Container";
 
 const AppsList = ({ apps }) => {
-    console.log(apps);
-    //apps
+
     return (
         <Fragment>
-            <div style={{display: "flex", justifyContent: "space-around"}}>
+            <Container>
                 <CardDeck style={{marginBottom: "2rem"}}>
-                {apps.map((app, key) => (
-                    <Cards
-                        key={key}
-                        value={{
-                            title: app.title,
-                            description: app.description,
-                            image: app.image,
-                            appId: app.appId,
-                        }}
-                    />
-                ))}
+                    {apps.map((app, key) => (
+                        <Cards
+                            key={key}
+                            value={{
+                                title: app.title,
+                                description: app.description,
+                                image: app.image,
+                                appId: app.appId,
+                            }}
+                        />
+                    ))}
                 </CardDeck>
-            </div>
-            <CreateAppButton />
+                <CreateAppButton />
+            </Container>
         </Fragment>
     );
 };

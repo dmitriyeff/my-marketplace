@@ -9,26 +9,23 @@ const AppDetails = ({ apps }) => {
     const app = apps[id - 1];
 
     return (
-        <Row style={{justifyContent: "center"}}>
-            <Col xs={12}
-                 md={8}
-            >
-                <Fragment>
-                    <div style={{marginTop: "4rem"}}>
-                        <h2>{app.title}</h2>
-                        {app.image &&
-                            <img
-                                style={{width: "100%"}}
-                                src={require(`./../../../src/assets/${app.image}`)}
-                                alt={app.title}
-                            />}
-                        <p style={{margin: "1rem 0"}}>
-                            {app.description}
-                        </p>
-                        <GoBackButton />
-                    </div>
-                </Fragment>
-            </Col>
+        <Row className="justify-content-md-center">
+            <Fragment>
+                <div style={{marginTop: "4rem"}}>
+                    <h2>{app.title}</h2>
+                    {app.image &&
+                        <img
+                            style={{width: "100%"}}
+                            src={require(`./../../../src/assets/${app.image}`)}
+                            alt={app.title}
+                        />
+                    }
+                    <p style={{margin: "1rem 0"}}>
+                        {app.description}
+                    </p>
+                    <GoBackButton />
+                </div>
+            </Fragment>
         </Row>
     );
 };

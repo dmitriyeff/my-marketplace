@@ -6,9 +6,11 @@ const CreateAppButton = () => {
     return (
         <Fragment>
             <Link to="/create">
-                <Button variant="outline-danger">
-                    Create an app
-                </Button>
+                <div style={{padding: "15px"}}>
+                    <Button variant="outline-danger">
+                        Create an app
+                    </Button>
+                </div>
             </Link>
         </Fragment>
     )
